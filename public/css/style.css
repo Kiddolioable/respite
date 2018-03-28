@@ -1,0 +1,269 @@
+body{
+    position:relative;
+}
+
+/*Making all checkboxes bigger*/
+input[type=checkbox]
+{
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.3); /* IE */
+    -moz-transform: scale(1.3); /* FF */
+    -webkit-transform: scale(1.3); /* Safari and Chrome */
+    -o-transform: scale(1.3); /* Opera */
+    padding: 10px;
+}
+
+/*Right side widgets*/
+.rightSideWidgets{
+    margin-right: 40px;
+}
+
+/*Left side widgets*/
+.leftSideWidgets{
+    margin-left: 40px;
+}
+
+#specialEdit{
+    margin-left: 1040px;
+}
+
+#advancedSearch{
+    margin-left: 80px;
+}
+
+/*Special edit*/
+#special-edit-info{
+    outline: none;
+    border: 0px;
+    background: white;
+    color: #858585;
+}
+
+/*Should click links*/
+.shouldClickMe{
+    color: dodgerblue;
+}
+
+/*Special edit*/
+#table-toggle-info{
+    outline: none;
+    border: 0px;
+    background: white;
+    color: #858585;
+}
+
+#specialEditIcon{
+    color: #858585;
+}
+
+#specialEditToggleButton{
+    outline: none;
+    border: 0px;
+    background: white;
+}
+
+/*Advanced Search*/
+#advancedSearchToggleButton{
+    border: 0px;
+    outline: none;
+    background: white;
+}
+
+#advancedSearchIcon{
+    color: #858585;
+}
+
+#advanced-search-info{
+    outline: none;
+    border: 0px;
+    background: white;
+    color: #858585;
+}
+
+/*.isShown{*/
+    /*display: block;*/
+/*}*/
+
+/*Navbar*/
+
+/*Multiple Delete*/
+#buttonMultDel{
+    position: fixed;
+    right: 10px;
+    top: inherit;
+    z-index: 200;
+}
+
+.hidden{
+    background-color: white;
+    border: 0px;
+    outline: none;
+}
+
+/*Error 404*/
+#error-404{
+    position: relative;
+    text-align: center;
+    top: 150px;
+}
+
+/*Terminal server*/
+.addserver-label{
+    text-align: left;
+}
+
+/*User information popover*/
+.user-info-prefix{
+    width: 190px;
+    text-align: left;
+}
+
+.affix{
+    top: 0px;
+    width: 100%;
+}
+
+.user-info-suffix{
+    width: 380px;
+    text-align: center;
+}
+/*Home tab*/
+#SISlogo{
+    position: relative;
+    left: 100px;
+}
+
+#homepage-hello{
+    left: 150px;
+}
+
+/*User TS tab*/
+.adduserUTS-label{
+    text-align: left;
+}
+
+/*User config tab*/
+#searchInsert{
+    width: 150px;
+}
+
+.adduser-label{
+    text-align: left;
+}
+
+/*Server terminal tab*/
+
+
+/*Sign in tab*/
+#tab-login{
+    position: relative;
+    left: 160px;
+    width: 500px;
+}
+
+/*Contact us tab*/
+#tab-contact{
+    position: relative;
+    left: 100px;
+}
+
+/*Sign up tab*/
+#tab-signup{
+    width: 100%;
+}
+
+.input-group-addon-signup{
+    width: 150px;
+    text-align: left;
+}
+
+#astcolor-tag{
+    color: red;
+}
+
+
+/*Footer*/
+.main-footer{
+    position: fixed;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    padding: 2rem;
+    width: 100%;
+    background-color: rgba(128, 125, 127, 0.15);
+}
+
+.footer-text{
+    text-align: center;
+    color: #272727;
+}
+
+
+
+/**********************
+*    EASTER EGG IM    *
+**********************/
+
+#easterLogoDiv{
+    position: fixed;
+    right: 10px;
+    bottom: 50px;
+}
+
+#easterLogo{
+    width: 150px;
+}
+
+
+
+.headerImage{
+    background-image: url("/public/images/headerTwo.jpg");
+    background-repeat: repeat-x;
+}
+
+.easterEggifyBody{
+    background-image: url("/public/images/ironMaidenWallpaper.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.easterEggifyHeader{
+    background-image: none;
+    display: none;
+}
+
+.easterEggifyNavbar{
+    background-color: #ffffff;
+    border-color: rgb(120, 0, 21);
+}
+
+.easterEggifyLogo{
+    display: none;
+}
+
+.easterEggifyLogoReal{
+    margin-left: 50px;
+    display: block;
+    height: 150px;
+}
+
+.easterEggifyFooter{
+    position: fixed;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    padding: 2rem;
+    width: 100%;
+    background-color: rgba(156, 26, 0, 0.61);
+    text-align: center;
+    color: #ffffff;
+}
+
+.easterEggifyHome{
+    color: #ffffff;
+
+}
+
+.easterEggifyGif{
+    display: block;
+}
