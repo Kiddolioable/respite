@@ -1,0 +1,282 @@
+<?php defined('SYSPATH') OR die('No direct script access.'); ?>
+
+2018-03-28 05:00:10 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/template.php [ 14 ] in file:line
+2018-03-28 05:00:10 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 14, Array)
+#1 /opt/lampp/htdocs/respite/application/views/template.php(14): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#10 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#11 {main} in file:line
+2018-03-28 05:12:19 --- EMERGENCY: ErrorException [ 8 ]: Undefined index: id ~ APPPATH/views/template.php [ 24 ] in /opt/lampp/htdocs/respite/application/views/template.php:24
+2018-03-28 05:12:19 --- DEBUG: #0 /opt/lampp/htdocs/respite/application/views/template.php(24): Kohana_Core::error_handler(8, 'Undefined index...', '/opt/lampp/htdo...', 24, Array)
+#1 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#5 [internal function]: Kohana_Controller->execute()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#9 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#10 {main} in /opt/lampp/htdocs/respite/application/views/template.php:24
+2018-03-28 05:16:20 --- INFO: User admin (1) logged in on date 2018-03-28 05:16:20 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:16:24 --- INFO: User admin (1) logged in on date 2018-03-28 05:16:24 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:17:07 --- INFO: User admin (1) logged in on date 2018-03-28 05:17:07 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:18:11 --- INFO: User admin (1) logged in on date 2018-03-28 05:18:11 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:20:41 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: user_persName ~ APPPATH/views/template.php [ 259 ] in /opt/lampp/htdocs/respite/application/views/template.php:259
+2018-03-28 05:20:41 --- DEBUG: #0 /opt/lampp/htdocs/respite/application/views/template.php(259): Kohana_Core::error_handler(8, 'Undefined varia...', '/opt/lampp/htdo...', 259, Array)
+#1 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#5 [internal function]: Kohana_Controller->execute()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#9 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#10 {main} in /opt/lampp/htdocs/respite/application/views/template.php:259
+2018-03-28 05:22:48 --- INFO: User admin (1) logged in on date 2018-03-28 05:22:48 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:22:48 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: user_persName ~ APPPATH/views/template.php [ 259 ] in /opt/lampp/htdocs/respite/application/views/template.php:259
+2018-03-28 05:22:48 --- DEBUG: #0 /opt/lampp/htdocs/respite/application/views/template.php(259): Kohana_Core::error_handler(8, 'Undefined varia...', '/opt/lampp/htdo...', 259, Array)
+#1 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#5 [internal function]: Kohana_Controller->execute()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#9 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#10 {main} in /opt/lampp/htdocs/respite/application/views/template.php:259
+2018-03-28 05:23:12 --- INFO: User admin (1) logged in on date 2018-03-28 05:23:12 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:23:17 --- INFO: User admin (1) logged in on date 2018-03-28 05:23:17 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:25:26 --- INFO: User admin (1) logged in on date 2018-03-28 05:25:26 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:26:30 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/configurazioneutenti.php [ 79 ] in file:line
+2018-03-28 05:26:30 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 79, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php(79): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:33:42 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/configurazioneutenti.php [ 79 ] in file:line
+2018-03-28 05:33:42 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 79, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php(79): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:35:47 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/logout.php [ 9 ] in file:line
+2018-03-28 05:35:47 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 9, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/logout.php(9): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:37:58 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/logout.php [ 9 ] in file:line
+2018-03-28 05:37:58 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 9, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/logout.php(9): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:39:12 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/logout.php [ 9 ] in file:line
+2018-03-28 05:39:12 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 9, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/logout.php(9): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:40:12 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/configurazioneutenti.php [ 79 ] in file:line
+2018-03-28 05:40:12 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 79, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php(79): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:41:22 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/logout.php [ 9 ] in file:line
+2018-03-28 05:41:22 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 9, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/logout.php(9): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:42:22 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/logout.php [ 9 ] in file:line
+2018-03-28 05:42:22 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 9, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/logout.php(9): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:43:22 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/logout.php [ 9 ] in file:line
+2018-03-28 05:43:22 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 9, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/logout.php(9): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:44:22 --- EMERGENCY: ErrorException [ 2 ]: mysqli::__construct(): (HY000/2002): Connection timed out ~ APPPATH/views/page/logout.php [ 9 ] in file:line
+2018-03-28 05:44:22 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'mysqli::__const...', '/opt/lampp/htdo...', 9, Array)
+#1 /opt/lampp/htdocs/respite/application/views/page/logout.php(9): mysqli->__construct('172.16.20.167', 'root', 'sis', 'crm2016')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#5 /opt/lampp/htdocs/respite/application/views/template.php(306): Kohana_View->__toString()
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#9 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#14 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#15 {main} in file:line
+2018-03-28 05:44:32 --- INFO: User admin (1) logged in on date 2018-03-28 05:44:32 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:45:49 --- INFO: User admin (1) logged in on date 2018-03-28 05:45:49 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:46:08 --- INFO: User admin (1) logged in on date 2018-03-28 05:46:08 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:46:43 --- INFO: User admin (1) logged in on date 2018-03-28 05:46:43 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:47:36 --- INFO: User admin (1) logged in on date 2018-03-28 05:47:36 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 05:47:49 --- EMERGENCY: ErrorException [ 1 ]: Method View::__toString() must not throw an exception, caught Error: Call to a member function fetch_assoc() on boolean ~ APPPATH/views/template.php [ 0 ] in file:line
+2018-03-28 05:47:49 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2018-03-28 05:50:52 --- EMERGENCY: ErrorException [ 8 ]: Undefined index: id ~ APPPATH/views/page/configurazioneutenti.php [ 89 ] in /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php:89
+2018-03-28 05:50:52 --- DEBUG: #0 /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php(89): Kohana_Core::error_handler(8, 'Undefined index...', '/opt/lampp/htdo...', 89, Array)
+#1 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#4 /opt/lampp/htdocs/respite/application/views/template.php(308): Kohana_View->__toString()
+#5 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#13 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#14 {main} in /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php:89
+2018-03-28 05:51:04 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: user ~ APPPATH/views/page/configurazioneutenti.php [ 91 ] in /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php:91
+2018-03-28 05:51:04 --- DEBUG: #0 /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php(91): Kohana_Core::error_handler(8, 'Undefined varia...', '/opt/lampp/htdo...', 91, Array)
+#1 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#2 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(236): Kohana_View->render()
+#4 /opt/lampp/htdocs/respite/application/views/template.php(308): Kohana_View->__toString()
+#5 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(62): include('/opt/lampp/htdo...')
+#6 /opt/lampp/htdocs/respite/system/classes/Kohana/View.php(359): Kohana_View::capture('/opt/lampp/htdo...', Array)
+#7 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller/Template.php(44): Kohana_View->render()
+#8 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(87): Kohana_Controller_Template->after()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Page))
+#11 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#13 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#14 {main} in /opt/lampp/htdocs/respite/application/views/page/configurazioneutenti.php:91
+2018-03-28 05:52:04 --- EMERGENCY: ErrorException [ 8 ]: Undefined index: nameInsert ~ APPPATH/classes/Controller/Rpc.php [ 26 ] in /opt/lampp/htdocs/respite/application/classes/Controller/Rpc.php:26
+2018-03-28 05:52:04 --- DEBUG: #0 /opt/lampp/htdocs/respite/application/classes/Controller/Rpc.php(26): Kohana_Core::error_handler(8, 'Undefined index...', '/opt/lampp/htdo...', 26, Array)
+#1 /opt/lampp/htdocs/respite/system/classes/Kohana/Controller.php(84): Controller_Rpc->action_addAccount()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Rpc))
+#4 /opt/lampp/htdocs/respite/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /opt/lampp/htdocs/respite/system/classes/Kohana/Request.php(997): Kohana_Request_Client->execute(Object(Request))
+#6 /opt/lampp/htdocs/respite/index.php(118): Kohana_Request->execute()
+#7 {main} in /opt/lampp/htdocs/respite/application/classes/Controller/Rpc.php:26
+2018-03-28 22:49:16 --- INFO: User admin (1) logged in on date 2018-03-28 22:49:16 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 22:49:43 --- INFO: User admin (1) logged in on date 2018-03-28 22:49:43 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 22:51:22 --- INFO: User admin (1) logged in on date 2018-03-28 22:51:22 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62
+2018-03-28 22:51:33 --- INFO: User admin (1) logged in on date 2018-03-28 22:51:33 in /opt/lampp/htdocs/respite/system/classes/Kohana/View.php:62

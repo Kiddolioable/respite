@@ -23,6 +23,11 @@ input[type=checkbox]
     margin-left: 40px;
 }
 
+/* Secret Question insert */
+#secretQInsert {
+    width: 300px;
+}
+
 #specialEdit{
     margin-left: 1040px;
 }
@@ -138,7 +143,7 @@ input[type=checkbox]
 }
 
 /*User TS tab*/
-.adduserUTS-label{
+.addAccountUTS-label{
     text-align: left;
 }
 
@@ -147,7 +152,7 @@ input[type=checkbox]
     width: 150px;
 }
 
-.adduser-label{
+.addAccount-label{
     text-align: left;
 }
 

@@ -9,7 +9,7 @@
             $log = Log::instance();
             $session = Session::instance();
 
-            $mysqli =  new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_TABLE_OS);
+            $mysqli =  new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_OS);
 
             //If cannot connect to MySQL table
             if ($mysqli->connect_error) {

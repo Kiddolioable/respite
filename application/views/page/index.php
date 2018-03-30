@@ -2,27 +2,27 @@
     $session = Session::instance();
 
     $user_id = $session->get('user_id');
-    $user_persName = $session->get('user_persName');
-    
+    $user_name = $session->get('user_name');
+
     if(isset($user_id) && $user_id != "")
     {
         ?>
         <br><br>
         <div id="homepage-content" class="homepage-content" style="margin-left: 100px; margin-right: 100px;">
             <?php if ($session->get('user_last_login') != ""){ ?>
-                <h3 id="homepage-hello">Welcome back, <?php echo $user_persName.".";?> </h3>
-                <h4>Your last login was <?php echo $session->get('user_last_login'); ?>. </h4>
-            <?php } else{ ?> 
-                <h3 id="homepage-hello">Welcome, <?php echo $user_persName.".";?> </h3>
-                
+                <h3 id="homepage-hello">Bentornato, <?php echo $user_name.".";?> </h3>
+                <h4>Il tuo ultimo accesso &#232; stato nel <?php echo $session->get('user_last_login'); ?>. </h4>
+            <?php } else{ ?>
+                <h3 id="homepage-hello">Benvenuto, <?php echo $user_name.".";?> </h3>
+
             <?php } ?>
         </div>
-        
+
         <!-- EASTER EGG! -->
         <div align="center" id="homepage-eggified" class="hidden" style="margin-left: 100px; margin-right: 100px;">
-            <h3>Rock on, <?php echo $user_persName."!";?> </h3>
+            <h3>Rock on, <?php echo $user_name."!";?> </h3>
         </div>
-        
+
         <div id="carousel-example-generic" class="hidden" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -84,45 +84,45 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        
+
         <div style="padding: 320.5px">
 <!--            Spacer for footer-->
         </div>
-        
-        
+
+
 
         <!-- Toggle IRON MAIDEN mode (Easter Egg). Per te Gabri xD -->
         <div id="easterLogoDiv">
             <a href="#">
-                <img onclick="easterEggify('bodyID', 
-                'headerID', 
-                'navbar-main', 
+                <img onclick="easterEggify('bodyID',
+                'headerID',
+                'navbar-main',
                 'SISlogo',
-                'EasterEggLogo', 
-                'main-footer', 
+                'EasterEggLogo',
+                'main-footer',
                 'footer-text',
                 'homepage-content',
                 'homepage-eggified',
                 'carousel-example-generic')
-                " 
+                "
                      id="easterLogo" src="/public/images/Iron-Maiden-Logo.png" alt="easterToggleLogo">
             </a>
         </div>
 
         <?php
     } else{
-    ?> 
+    ?>
     <!-- Home Tab -->
     <br><br>
     <!-- Login -->
     <div id="tab-login" class="not-home">
         <h1 id="login-header">Sign in</h1>
-    
+
         <br>
         <form class="form-horizontal" method="post">
-    
+
             <div class="form-group">
-    
+
                 <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="usernameInsertHome" name="usernameInsertHome" placeholder="Insert Username">
@@ -134,7 +134,7 @@
                     <input type="password" class="form-control" id="passwordInsertHome" name="passwordInsertHome" placeholder="Insert Password">
                 </div>
             </div>
-            
+
             <!-- Create account, forgot user and forgot pass links-->
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -175,7 +175,3 @@
         </div>
         <!-- END Modal Edit -->
    <?php } ?>
-
-
-
-

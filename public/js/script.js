@@ -49,17 +49,6 @@ function arrowToggle(shown, icon){
     }
 }
 
-
-//
-// //Toggle active/inactive navbar tabs
-// function showActiveTab(toShow, toHide){
-//     if(document.getElementById(toHide).className == "active"){
-//         document.getElementById(toShow).className = "active";
-//         document.getElementById(toHide).className = "";
-//     }
-// }
-
-
 //Show service modals with custom messages and titles
 function service_dialog(title, message) {
     $('#service_modal_dialog_title').text(title);
@@ -86,9 +75,8 @@ function reloadOnClick(){
 //Confirm deletion
 function confirmMessage(id, username, nome){
 
-    $('#id_da_cancellare').val(id);
-    $('#username_da_cancellare').val(username);
-    $('#nome_da_cancellare').text(nome);
+    $('#account-id-delete').val(id);
+    $('#account-username-delete').text(username);
 }
 
 //Confirm edit
@@ -103,26 +91,26 @@ function confirmMessagePlus(id,
 }
 
 //Delete user from table
-function cancellaUtente(){
-    var idD = $('#id_da_cancellare').val();
-    var usernameD = $('#username_da_cancellare').val();
+function deleteAccount(){
+    var idD = $('#account-id-delete').val();
+    var usernameD = $('#account-username-delete').text();
 
     $.ajax({
-        url: "/Rpc/cancellaUtente",
+        url: "/Rpc/deleteAccount",
         method: "POST",
-        data: { "id" : idD,
+        data: { "id_acc" : idD,
                 "username" : usernameD },
         success: function (s) {
             if(s.is_error == true){
                 $('#deleteModal').modal('hide');
-                service_dialog("Error", "Could not delete user");
+                service_dialog("Errore", "Cancellazione non riuscita");
             }else{
                 if(s.is_admin == false){
                     $('#deleteModal').modal('hide');
-                    service_dialog("Error 70", "Deletion failed: permission denied (error 70)");
+                    service_dialog("Error 70", "Errore: permesso negato");
                 }else {
                     $('#deleteModal').modal('hide');
-                    service_dialog("Success", "User successfully deleted");
+                    service_dialog("Successo", "Utente cancellato");
                 }
             }
         },
@@ -170,35 +158,34 @@ function modificaUtente(){
 }
 
 //Add user
-function addUser(){
+function addAccount(){
     var usernameD = $('#usernameInsert').val();
-    var nameD = $('#nameInsert').val();
-    var surnameD = $('#surnameInsert').val();
     var passwordD = $('#passwordInsert').val();
-    var idD = $('#id_da_cancellare').val();
+    var secretQ = $('#secretQInsert').val();
+    var secretA = $('#secretAnswerInsert').val();
 
     $.ajax({
-        url: "/Rpc/addUser",
+        url: "/Rpc/addAccount",
         method: "POST",
-        data: { "id" : idD,
+        data: {
             "usernameInsert" : usernameD,
             "passwordInsert" : passwordD,
-            "nameInsert" : nameD,
-            "surnameInsert" : surnameD
+            "secretQInsert" : secretQ,
+            "secretAInsert" : secretA
         },
-        success: function(s){
+        success: function (s) {
             if (s.is_error == false){
                 if (s.is_admin == true){
                     if(s.is_complete == true){
-                        service_dialog("Success", "User successfully added");
+                        service_dialog("Success", "Utente aggiunto con successo");
                     } else{
-                        service_dialog("Error", "Missing field(s): username/password")
+                        service_dialog("Error", "Campo mancante: username/password")
                     }
                 } else{
-                    service_dialog("Error 70", "Operation failed: permission denied (error 70)");
+                    service_dialog("Error 70", "Operazione fallita: permesso negato (errore 70)");
                 }
             } else{
-                service_dialog("Error", "Could not add user");
+                service_dialog("Error", "Operazione fallita");
             }
         },
         dataType: "json"
@@ -284,7 +271,7 @@ function deleteServer(){
     var idD = $('#serverid_to_delete').val();
     var servNameD = $('#serverName_to_delete').val();
     var hostD = $('#host_to_delete').val();
-    
+
     $.ajax({
         url: "/Rpc/deleteServer",
         method: "POST",
@@ -373,14 +360,14 @@ function confirmModifyUTS(utsid,
 }
 
 //Add user
-function addUserUTS(){
+function addAccountUTS(){
     var useridUTS = $('#useridUTSInsert').val();
     var tsidUTS = $('#tsidUTSInsert').val();
     var deletedUTS = $('#deletedUTSInsert').val();
     var accessesUTS = $('#accessesUTSInsert').val();
 
     $.ajax({
-        url: '/Rpc/addUserUTS',
+        url: '/Rpc/addAccountUTS',
         method: "POST",
         data: {
             "useridUTSInsert": useridUTS,
@@ -512,10 +499,10 @@ function addCheckedIDsToArray(id, icon){
         var index = arr.indexOf(id);
         if (index > -1) {
             arr.splice(index, 1);
-            
+
         }
-        
-        if (index <= 0){    
+
+        if (index <= 0){
             document.getElementById(icon).style.display = "none";
         }
     }
@@ -562,20 +549,20 @@ function fullTableLoadToggle(){
         url: '/Rpc/fullTableLoadToggle',
         method: "POST",
         data: ({
-            'selected' : selected     
+            'selected' : selected
         }),
         dataType: "json"
     });
 }
 
 //EASTER EGG (IRON MAIDEN)
-function easterEggify(idOne, 
-                      idTwo, 
-                      idThree, 
-                      idFour, 
-                      idFive, 
-                      idSix, 
-                      idSeven, 
+function easterEggify(idOne,
+                      idTwo,
+                      idThree,
+                      idFour,
+                      idFive,
+                      idSix,
+                      idSeven,
                       idEight,
                       idNine,
                       idTen){
@@ -590,23 +577,3 @@ function easterEggify(idOne,
     document.getElementById(idNine).className = "easterEggifyHome";
     document.getElementById(idTen).className = "carousel slide";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -12,31 +12,31 @@ if(isset($user_id) && $user_id != ""){ ?>
     
     <div align="center" class="panel panel-success" style="margin-left: 40px; margin-right: 40px;">
         <div class="panel-heading">
-            <form class="form-inline" method="post" id="adduserUTS-aesthetic">
-                <div class="form-group adduserUTS-label">
+            <form class="form-inline" method="post" id="addAccountUTS-aesthetic">
+                <div class="form-group addAccountUTS-label">
                     <label class="form-label" for="exampleInputName2">User ID</label><br>
                     <input type="number" class="form-control" id="useridUTSInsert" name="useridUTSInsert" placeholder="User ID">
                 </div>
-                <div class="form-group adduserUTS-label">
+                <div class="form-group addAccountUTS-label">
                     <label class="form-label" for="exampleInputName2">Terminal Server ID</label><br>
                     <input type="number" class="form-control" id="tsidUTSInsert" name="tsidUTSInsert" disabled="disabled" placeholder="Terminal Server ID" value="8">
                 </div>
-                <div class="form-group adduserUTS-label">
+                <div class="form-group addAccountUTS-label">
                     <label for="exampleInputEmail2">Deleted</label><br>
                     <select class="form-control" id="deletedUTSInsert" name="deletedUTSInsert">
                         <option value="1">Deleted - 1</option>
                         <option value="0">NOT Deleted - 0</option>
                     </select>
                 </div>
-                <div class="form-group adduserUTS-label">
+                <div class="form-group addAccountUTS-label">
                     <label for="exampleInputEmail2">Accesses</label><br>
                     <input type="number" class="form-control" id="accessesUTSInsert" name="accessesUTSInsert" value="0" placeholder="Accesses">
                 </div>
     
                 <!-- Submit new user to server button -->
-                <div style="padding-top: 4.5px" class="form-group adduserUTS-label">
+                <div style="padding-top: 4.5px" class="form-group addAccountUTS-label">
                     <br>
-                    <button type="button" class="btn btn-success" onclick="addUserUTS()">Add User(s)</button>
+                    <button type="button" class="btn btn-success" onclick="addAccountUTS()">Add User(s)</button>
                 </div>
             </form>
         </div>
@@ -213,7 +213,7 @@ if(isset($user_id) && $user_id != ""){ ?>
             $limit=$session->get('limit');
 //            $isASearching=$session->get('isASearching');
             
-                $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_TABLE_OS);
+                $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_OS);
 
                 //If cannot connect to MySQL table
                 if ($mysqli->connect_error) {

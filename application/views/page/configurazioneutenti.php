@@ -1,4 +1,4 @@
-<?php 
+<?php
     $session = Session::instance();
     $user_id = $session->get('user_id');
     if(isset($user_id) && $user_id != ""){ ?>
@@ -6,36 +6,36 @@
     <br><br>
     <div align="center" class="panel panel-success" style="margin-left: 80px; margin-right: 80px;">
         <div class="panel-heading">
-            <form class="form-inline" method="post" id="adduser-aesthetic">
-                <div class="form-group adduser-label">
+            <form class="form-inline" method="post" id="addAccount-aesthetic">
+                <div class="form-group addAccount-label">
                     <label for="exampleInputName2">Username</label><br>
                     <input type="text" class="form-control" id="usernameInsert" name="usernameInsert" placeholder="Username">
                 </div>
-                <div class="form-group adduser-label">
-                    <label for="exampleInputName2">Name</label><br>
-                    <input type="text" class="form-control" id="nameInsert" name="nameInsert" placeholder="Name">
-                </div>
-                <div class="form-group adduser-label">
-                    <label for="exampleInputEmail2">Surname</label><br>
-                    <input type="text" class="form-control" id="surnameInsert" name="surnameInsert" placeholder="Surname">
-                </div>
-                <div class="form-group adduser-label">
+                <div class="form-group addAccount-label">
                     <label for="exampleInputEmail2">Password</label><br>
                     <input type="password" class="form-control" id="passwordInsert" name="passwordInsert" placeholder="Password">
                 </div>
-        
+                <div class="form-group addAccount-label">
+                    <label for="exampleInputEmail2">Domanda Segreta</label><br>
+                    <input type="text" class="form-control" id="secretQInsert" name="secretQInsert" placeholder="Es. Come si chiama il tuo cane?">
+                </div>
+                <div class="form-group addAccount-label">
+                    <label for="exampleInputEmail2">Risposta</label><br>
+                    <input type="text" class="form-control" id="secretAnswerInsert" name="secretAnswerInsert" placeholder="Es. Bobby">
+                </div>
+
                 <!-- Submit new user button -->
                 <div style="padding-top: 4.5px" class="form-group addserver-label">
                     <br>
-                    <button type="button" class="btn btn-success" onclick="addUser()">Add User</button>
+                    <button type="button" class="btn btn-success" onclick="addAccount()">Aggiungi Utente</button>
                 </div>
             </form>
         </div>
     </div>
     <br><br>
     <!-- END Add new user form -->
-    
-    
+
+
 <div style="width: 90%; margin: auto">
     <!-- User information table, downloading from MySQL server -->
     <table id="usersTable" class="table table-bordered" style="width: 100%" cellspacing="0">
@@ -48,76 +48,54 @@
                 <strong>Username</strong>
             </th>
             <th>
-                <strong>Name</strong>
-            </th>
-            <th>
-                <strong>Surname</strong>
-            </th>
-            <th>
-                <strong>CR_Date</strong>
-            </th>
-            <th>
-                <strong>UP_Date</strong>
+                <strong>Ultimo Login</strong>
             </th>
             <th>
                 <!-- Modify/Delete icons -->
             </th>
         </tr>
         </thead>
-        
-        
+
+
         <tbody>
-    
+
         <!-- Loads table into page -->
         <?php
-        
+
         include "db_connect.php";
-    
+
         $searchInfo = "";
         $log = Log::instance();
-    
-        $mysqli =  new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_TABLE);
-        
-        //If cannot connect to MySQL table 
-        if ($mysqli->connect_error) {            
+
+        $mysqli =  new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+
+        //If cannot connect to MySQL table
+        if ($mysqli->connect_error) {
             $log->add(Log::ERROR, 'Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
             die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
         } else {
 
 
-            $results = $mysqli->query("SELECT * FROM login");
-    
+            $results = $mysqli->query("SELECT * FROM accounts");
+
             //Fetching row
             while($row = $results->fetch_assoc()) {
 
-                $user = $row['username'];
-                $name = $row['nome'];
-                $surname = $row['cognome'];
-
                 ?>
-                
+
                 <!-- Displaying data to table-->
                 <tr align="left">
-                    <td> <?php echo $row['id']; ?> </td>
+                    <td> <?php echo $row['id_acc']; ?> </td>
                     <td> <?php echo $row['username']; ?> </td>
-                    <td> <?php echo $row['nome']; ?> </td>
-                    <td> <?php echo $row['cognome']; ?> </td>
-                    <td> <?php echo $row['cr_date']; ?> </td>
-                    <td> <?php if($row['up_date'] == ""){
-                            ?><div align="center"> - </div> <?php
-                        } else {
-                            echo $row['up_date']; }
-                        ?> </td>
+                    <td> <?php echo $row['last_login']; ?> </td>
 
-
-                    <td style="padding-left: 50px; padding-right: 50px;" align="center">
+                    <td style="width: 10%" align="center">
                         <!-- Delete button -->
                         <button type="button"
                                 class="btn btn-sm btn-danger btn-delete"
                                 data-toggle="modal"
-                                data-target="#deleteModal" onclick="confirmMessage(<?php echo $row['id']; ?>,
-                                                                                  '<?php echo $row['username']; ?>',
-                                                                                  '<?php echo $user; ?>')">
+                                data-target="#deleteModal" onclick="confirmMessage(<?php echo $row['id_acc']; ?>,
+                                                                                  '<?php echo $row['username']; ?>')">
                             <i class="fa fa-trash" aria-hidden="true">
                             </i>
                         </button>
@@ -126,10 +104,8 @@
                         <button type="button"
                                 class="btn btn-sm btn-warning btn-edit"
                                 data-toggle="modal"
-                                data-target="#editModal" onclick="confirmMessagePlus(<?php echo $row['id']?>,
-                                                                                    '<?php echo $user; ?>',
-                                                                                    '<?php echo $name; ?>',
-                                                                                    '<?php echo $surname; ?>')">
+                                data-target="#editModal" onclick="confirmMessagePlus(<?php echo $row['id_acc']?>,
+                                                                                    '<?php echo $row['username'];?>')">
                             <i class="fa fa-pencil" aria-hidden="true">
                             </i>
                         </button>
@@ -146,29 +122,28 @@
             $mysqli->close();
 
         }
-        
+
         ?>
     </tbody>
 </table>
 </div>
 <!-- END User information table  -->
-        
+
 <!-- Deletion Modal -->
 <div class="modal fade" id="deleteModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="deleteModalLabel">User Deletion</h4>
+                <h4 class="modal-title" id="deleteModalLabel">Cancellazione Utente</h4>
             </div>
             <div class="modal-body">
-                Confirm deletion of <strong><span id="nome_da_cancellare"></span></strong>
+                Confermare la cancellazione dell'utente <strong><span id="account-username-delete"></span></strong>
             </div>
-            <input type="hidden" id="id_da_cancellare">
-            <input type="hidden" id="username_da_cancellare">
+            <input type="hidden" id="account-id-delete">
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cancellaUtente()"><i class="fa fa-trash" aria-hidden="true" ></i> Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteAccount()"><i class="fa fa-trash" aria-hidden="true" ></i> Cancella</button>
             </div>
         </div>
     </div>
@@ -207,11 +182,10 @@
     </div>
 </div>
 <!-- END Modal Edit -->
-        
+
 <!-- ERROR 404 PAGE (If no permission to view) -->
 <?php } else { ?>
         <div id="error-404">
             <meta http-equiv="refresh" content="0; url=/errors/404.php" />
         </div>
 <?php } ?>
-    

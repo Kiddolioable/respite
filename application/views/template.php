@@ -3,30 +3,26 @@
     include "db_connect.php";
     $session = Session::instance();
     $log = Log::instance();
-    
-    
+
+
     $current_datetime= date("Y-m-d H:i:s");
-        
+
     if(isset($_POST['usernameInsertHome']) && isset($_POST['passwordInsertHome'])){
         if($_POST['usernameInsertHome'] != "" && $_POST['passwordInsertHome'] != ""){
             $username = $_POST['usernameInsertHome'];
             $password = sha1($_POST['passwordInsertHome']);
-            $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_TABLE);
+            $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
             //IF username exists in table (where username = $username), then it gets stored into $results. Password too.
-            $results = $mysqli->query("SELECT * FROM login WHERE username ='".$username."' AND password = '".$password."'");
+            $results = $mysqli->query("SELECT * FROM accounts WHERE username ='".$username."' AND password = '".$password."'");
             //Stores EVERY info of user
 //            $results_user_persInfo = $mysqli->query("SELECT * FROM login WHERE username='".$username."' AND password= '".$password."'");
-            
+
             if (isset($results) && $results->num_rows == 1){
                 //fetching from $row_login
                 $row_login = $results->fetch_assoc();
                 //Giving/Setting user info to session
-                $session->set('user_id', $row_login['id']);
-                $session->set('user_persName', $row_login['nome']);
-                $session->set('user_persSurname', $row_login['cognome']);
+                $session->set('user_id', $row_login['id_acc']);
                 $session->set('user_name', $row_login['username']);
-                $session->set('user_CR_Date', $row_login['cr_date']);
-                $session->set('user_UP_Date', $row_login['up_date']);
                 $session->set('user_last_login', $row_login['last_login']);
                 //Sets table load limit to 100 rows as default
                 $session->set('limit', 'limit 100');
@@ -36,16 +32,16 @@
 
                 $user_name = $session->get('user_name');
                 $user_id = $session->get('user_id');
-                
+
                 //Log user logins
                 $log->add(Log::INFO, "User ".$user_name." (".$user_id.") logged in on date ".$current_datetime);
-                
+
                 ?>
                 <!-- Login successful notification before redirect -->
                 <div class="alert alert-success" role="alert" style="margin-bottom: 0px;">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <i class="fa fa-check-circle" aria-hidden="true"></i> <strong>Login successful</strong> -
+                    <i class="fa fa-check-circle" aria-hidden="true"></i> <strong>Login riuscito</strong> -
                     Welcome, <strong><?php echo $user_name?></strong>!
                 </div>
                 <?php
@@ -55,30 +51,30 @@
                 <div class="alert alert-danger" role="alert" style="margin-bottom: 0px;">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> <strong>Login unsuccessful</strong> -
-                    Incorrect password.
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> <strong>Login fallito</strong> -
+                    Password errato.
                 </div>
-           <?php } 
+           <?php }
 
-            //Free memory in results, close sql connection    
+            //Free memory in results, close sql connection
             $results -> free();
             $mysqli -> close();
-            
+
         } else{
                 ?>
                 <!-- Login unsuccessful warning -->
                 <div class="alert alert-danger" role="alert" style="margin-bottom: 0px;">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> <strong>Login unsuccessful</strong> -
-                    Please fill out both fields.
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> <strong>Login fallito</strong> -
+                    Immettere username e password.
                 </div>
         <?php }
     }
 
     //Declaring variables of user information
     $user_id = $session->get('user_id');
-    $user_name = $session->get('user_name');        
+    $user_name = $session->get('user_name');
     $user_persName = $session->get('user_persName');
     $user_persSurname = $session->get('user_persSurname');
     $user_cr_date = $session->get('user_CR_Date');
@@ -92,9 +88,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+
     <title>
-        SIS srl
+        Respite Shoes
     </title>
     <!--including Javascript files -->
     <script src="/public/js/jquery-1.12.4.min.js"></script>
@@ -106,14 +102,15 @@
     <!--include CSS files -->
     <link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<!--    <link href="/public/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">-->
     <link href="/public/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
     <link href="/public/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon"/>
     <link rel="ico" href="/public/images/favicon.ico" type="image/x-icon">
-    
+
+    <meta charset="UTF-8">
+
 </head>
 
 <!-- *_*_*_*_*_* BODY *_*_*_*_*_* -->
@@ -170,15 +167,15 @@
                 <li id="navTab">
                     <?php echo HTML::anchor('/', '<i class="fa fa-home" aria-hidden="true"></i>  Home', array('class' => 'navbar-text')); ?>
                 </li>
-                
+
                 <?php
                 if (isset($user_id) && $user_id != "")
                 { ?>
                     <!-- User Configuration -->
                     <li id="navTab">
-                        <?php echo HTML::anchor('/page/configurazioneutenti', '<i class="fa fa-user-md" aria-hidden="true"></i> User Configuration', array('class' => 'navbar-text')); ?>
+                        <?php echo HTML::anchor('/page/configurazioneutenti', '<i class="fa fa-user-md" aria-hidden="true"></i> Configurazione Utenti', array('class' => 'navbar-text')); ?>
                     </li id="navTab">
-                    
+
                     <!-- Terminal Server -->
                     <li id="navTab">
                         <?php echo HTML::anchor('/page/terminal_server', '<i class="fa fa-server" aria-hidden="true"></i>  Terminal Server', array('class' => 'navbar-text')); ?>
@@ -190,12 +187,12 @@
                     </li>
 
                 <?php } ?>
-                
+
 
             </ul>
-            
+
             <?php
-                
+
                 if (isset($user_id) && $user_id != "")
                 {
             ?>      <!-- Strangely their positions are inverted -->
@@ -223,19 +220,19 @@
 <div class="modal fade" id="userInfoPopover" tabindex="-1" role="dialog" aria-labelledby="userInfoPopoverLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            
+
             <!-- Modal head -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="userInfoLabel"><i class="fa fa-user" aria-hidden="true"></i> User information of <b><?php echo $user_name?></b></h3>
             </div>
-            
+
             <!-- Modal body -->
             <div class="modal-body">
 <!--                 Last login-->
                 <span class="input-group-addon user-info-prefix">
                     <strong>
-                        Last login: 
+                        Last login:
                     </strong>
                 </span>
                 <span class="input-group-addon user-info-suffix">
@@ -244,7 +241,7 @@
 <!--                User ID-->
                 <span class="input-group-addon user-info-prefix">
                     <strong>
-                        User ID: 
+                        User ID:
                     </strong>
                 </span>
                 <span class="input-group-addon user-info-suffix">
@@ -253,7 +250,7 @@
 <!--                 Username-->
                 <span class="input-group-addon user-info-prefix">
                     <strong>
-                        Username: 
+                        Username:
                     </strong>
                 </span>
                 <span class="input-group-addon user-info-suffix">
@@ -262,7 +259,7 @@
 <!--                 First name-->
                 <span class="input-group-addon user-info-prefix">
                     <strong>
-                        First name: 
+                        First name:
                     </strong>
                 </span>
                 <span class="input-group-addon user-info-suffix">
@@ -271,7 +268,7 @@
 <!--                Last name-->
                 <span class="input-group-addon user-info-prefix">
                     <strong>
-                        Last name: 
+                        Last name:
                     </strong>
                 </span>
                 <span class="input-group-addon user-info-suffix">
@@ -280,7 +277,7 @@
 <!--                CR_Date-->
                 <span class="input-group-addon user-info-prefix">
                     <strong>
-                        Account creation date: 
+                        Account creation date:
                     </strong>
                 </span>
                 <span class="input-group-addon user-info-suffix">
@@ -289,7 +286,7 @@
 <!--                UP_Date-->
                 <span class="input-group-addon user-info-prefix">
                     <strong>
-                        Last update: 
+                        Last update:
                     </strong>
                 </span>
                 <span class="input-group-addon user-info-suffix">
@@ -314,7 +311,7 @@
 <div style="padding-top: 100px"></div>
     <div id="main-footer" class="main-footer" align="center">
         <span id="footer-text" class="footer-text">
-                <strong>SIS srl</strong> - <i>Systems and Information Technology</i>
+                <strong>Project Respite</strong> - <i>Designer Shoes</i>
         </span>
     </div>
 </body>

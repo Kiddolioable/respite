@@ -3,32 +3,26 @@
 class Controller_Rpc extends Controller
 {
 
-    private $DB_HOST = "172.16.20.167";
-    private $DB_USER = "root";
-    private $DB_PASS = "sis";
-    private $DB_TABLE = "crm2016";
-    private $DB_TABLE_OS = "service_outsourcing";
-    private $DB_TABLE_SIX = "intrasix";
+    private $DB_HOST="127.0.0.1";
+    private $DB_USER="root";
+    private $DB_PASS="";
+    private $DB_NAME="db_cppoi";
 
     /* * * * * * * * * * * * * * * * * * *
      *      USER CONFIGURATION TABLE     *
      * * * * * * * * * * * * * * * * * * */
 
     //Allows client to add user to table if is logged on the server
-    public function action_addUser()
-    {
+    public function action_addAccount()  {
         $session = Session::instance();
         $user_id = $session->get('user_id');
         $user_name = $session->get('user_name');
 
         $username_inserted = $_POST['usernameInsert'];
-        $password_inserted = $_POST['passwordInsert'];
-        $name_inserted = $_POST['nameInsert'];
-        $surname_inserted = $_POST['surnameInsert'];
-
-        if ($name_inserted == "") {
-            $name_inserted = "unnamed_user";
-        }
+        //Hashing password with sha1
+        $password_inserted = sha1($_POST['passwordInsert']);
+        $secret_q = $_POST['secretQInsert'];
+        $secret_a = $_POST['secretAInsert'];
 
         $ret = new stdClass();
         $ret->is_error = false;
@@ -40,7 +34,7 @@ class Controller_Rpc extends Controller
             //Giving admin perms
             $ret->is_admin = true;
             //Connect to database
-            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE);
+            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
             //If connection failed
             if ($mysqli->connect_error) {
 
@@ -52,29 +46,31 @@ class Controller_Rpc extends Controller
 
 
             } else {
-                if (($ret->is_admin == true) && (isset($username_inserted) && $username_inserted != "") && (isset($password_inserted) && $password_inserted != "")) {
+                if (($ret->is_admin == true) &&
+                    (isset($username_inserted) &&
+                    $username_inserted != "") &&
+                    (isset($_POST['passwordInsert']) &&
+                    $_POST['passwordInsert'] != "") &&
+                    (isset($secret_q)) &&
+                    $secret_q != "" &&
+                    (isset($secret_a)) &&
+                    $secret_a != "") {
 
                     $ret->is_complete = true;
 
                     if ($ret->is_complete == true) {
 
                         //Add new user to database
-                        $mysqli->query("INSERT INTO login (username,
-                                                               nome,
-                                                               cognome,
-                                                               password)
+                        $mysqli->query("INSERT INTO accounts  (username,
+                                                               password,
+                                                               secret_q,
+                                                               secret_a)
                                                        VALUES ('$username_inserted',
-                                                               '$name_inserted',
-                                                               '$surname_inserted',
-                                                               sha1('$password_inserted'))");
+                                                               '$password_inserted',
+                                                               '$secret_q',
+                                                               '$secret_a')");
                         $id = $mysqli->insert_id;
                         $logTemp = Log::instance();
-
-                        //Adds a number to unnamed users
-                        if ($name_inserted == "unnamed_user") {
-                            $name_inserted = "$name_inserted" . $id;
-                            $mysqli->query("UPDATE login SET nome= '" . $name_inserted . "' WHERE id= $id");
-                        }
 
                         //Logs user additions
                         $logTemp->add(Log::INFO, "User " . "$user_name" . " (" . $user_id . ") has added user " . $username_inserted . " (" . $id . ") to the database");
@@ -91,8 +87,7 @@ class Controller_Rpc extends Controller
     }
 
     //Deletes user from table if client is logged on the server
-    public function action_cancellaUtente()
-    {
+    public function action_deleteAccount() {
         $session = Session::instance();
         $user_id = $session->get('user_id');
         $user_name = $session->get('user_name');
@@ -108,12 +103,12 @@ class Controller_Rpc extends Controller
 
             $log = Log::instance();
 
-            $id = $_POST['id'];
+            $id = $_POST['id_acc'];
 
             //If the ID is set
             if (($ret->is_admin == true) && isset($id)) {
                 //Connect to database
-                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE);
+                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
                 //If cannot connect
                 if ($mysqli->connect_error) {
 
@@ -128,7 +123,7 @@ class Controller_Rpc extends Controller
                     $user_name_deleted = $_POST['username'];
 
                     //Delete the row
-                    $mysqli->query("DELETE FROM login WHERE id= $id ");
+                    $mysqli->query("DELETE FROM accounts WHERE id_acc=$id");
 
                     //Logs user deletions
                     $log->add(Log::INFO, "User " . "$user_name" . " (" . $user_id . ") has deleted user " . $user_name_deleted . " (" . $id . ") from the database");
@@ -174,7 +169,7 @@ class Controller_Rpc extends Controller
 
             if (($ret->is_admin == true) && isset($id)) {
                 //Connect to database
-                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE);
+                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
 
                 //If cannot connect to server
                 if ($mysqli->connect_error) {
@@ -246,7 +241,7 @@ class Controller_Rpc extends Controller
             //Giving admin perms
             $ret->is_admin = true;
             //Connect to database
-            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
             //If connection failed
             if ($mysqli->connect_error) {
 
@@ -324,7 +319,7 @@ class Controller_Rpc extends Controller
             //If user is admin
             if ($ret->is_admin == true) {
                 //Connect to database
-                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
                 $id = $_POST['id'];
                 $ret->is_id = $id;
                 //If cannot connect
@@ -384,10 +379,10 @@ class Controller_Rpc extends Controller
             $log = Log::instance();
             $id = $_POST['id'];
 
-            //If is admin and ID is set 
+            //If is admin and ID is set
             if ($ret->is_admin == true && isset($id)) {
                 //Connect to database
-                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+                $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
 
                 //If cannot connect to server
                 if ($mysqli->connect_error) {
@@ -433,7 +428,7 @@ class Controller_Rpc extends Controller
      * * * * * * * * * * * * * * * * * * */
 
     //Add User to Terminal Server
-    public function action_addUserUTS()
+    public function action_addAccountUTS()
     {
         $session = Session::instance();
         $user_id = $session->get('user_id');
@@ -456,10 +451,10 @@ class Controller_Rpc extends Controller
             //Giving admin perms
             $ret->is_admin = true;
             //Connect to database
-            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
             //If connection failed
             if ($mysqli->connect_error) {
-                
+
                 $ret->is_error = true;
                 $log->add(Log::ERROR, "Connection error: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
 
@@ -468,24 +463,24 @@ class Controller_Rpc extends Controller
 
             } else {
                 //If UTS user add form is complete
-                
+
                 //Add EIGHT users to the TS AT A TIME (This is a CUSTOM request for specific functionality)
-                
+
                 if (($ret->is_admin == true) && ((isset($user_id_UTS)) && $user_id_UTS != "")) {
 
                     $ret->is_complete = true;
 
                     if ($ret->is_complete == true) {
-                        
+
                         //Select all user ids from the table
                         $user_id_UTS_in_table = $mysqli->query("SELECT id_utente FROM assoc_user_ts WHERE id_utente= $user_id_UTS");
-                            
+
                         //Checking if user id already exists. If yes, then put in remaining user ids to have 8 user ids with id_ts ranging from 8 to 15
                         if($user_id_UTS_in_table->num_rows >= 1){
 
                             $results = $mysqli->query("SELECT * FROM assoc_user_ts");
                             $count = 1;
-                            
+
                             //Fetching all rows into $row
                             while($row = $results->fetch_assoc()){
                                 $user_id_UTS_intable = $row['id_utente'];
@@ -502,7 +497,7 @@ class Controller_Rpc extends Controller
                                             $log->add(Log::INFO, "User " . "$user_name" . " (" . $user_id . ") has added user " . $id . " to the terminal server");
                                         }
                                     }
-                                    
+
                                     //Increment the TS ID and the count
                                     $ts_id_UTS++;
                                     $count++;
@@ -519,7 +514,7 @@ class Controller_Rpc extends Controller
                                                                                   '$deleted_UTS',
                                                                                   '$accesses_UTS',
                                                                                   '$datetime_UTS')");
-                                        
+
                                         $id = $mysqli->insert_id;
                                         //Logging new additions
                                         if($id != 0){
@@ -529,7 +524,7 @@ class Controller_Rpc extends Controller
                                 }
 
                             }
-                            
+
                         } else{
                             for ($i = 0; $i < 8; $i++){
                                 //Add new user(s) to the terminal server
@@ -543,9 +538,9 @@ class Controller_Rpc extends Controller
                                                                           '$deleted_UTS',
                                                                           '$accesses_UTS',
                                                                           '$datetime_UTS')");
-    
+
                                 $ts_id_UTS++;
-    
+
                                 $id = $mysqli->insert_id;
                                 //Logs user addition(s) to server
                                 $log->add(Log::INFO, "User " . "$user_name" . " (" . $user_id . ") has added user " . $id . " to the terminal server");
@@ -575,7 +570,7 @@ class Controller_Rpc extends Controller
         $user_name = $session->get('user_name');
 
         $id = $_POST['id'];
-        
+
         $ret = new stdClass();
         $ret->is_error = false;
         $ret->is_admin = false;
@@ -585,7 +580,7 @@ class Controller_Rpc extends Controller
             //Giving admin perms
             $ret->is_admin = true;
             //Connect to database
-            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
             //If connection failed
             if ($mysqli->connect_error) {
 
@@ -616,7 +611,7 @@ class Controller_Rpc extends Controller
 
         $this->response->body(json_encode($ret));
     }
-    
+
     //Modify user(s) in TS
     public function action_modifyUserUTS()
     {
@@ -629,7 +624,7 @@ class Controller_Rpc extends Controller
         $ts_id_UTS_to_modify = $_POST['id_ts'];
         $deleted_UTS_to_modify = $_POST['cancellato'];
         $accesses_UTS_to_modify = $_POST['accessi'];
-        
+
         $ret = new stdClass();
         $ret->is_error = false;
         $ret->is_admin = false;
@@ -639,7 +634,7 @@ class Controller_Rpc extends Controller
             //Giving admin perms
             $ret->is_admin = true;
             //Connect to database
-            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
             //If connection failed
             if ($mysqli->connect_error) {
 
@@ -655,9 +650,9 @@ class Controller_Rpc extends Controller
                 if (($ret->is_admin == true) && isset($id)){
 
                     //Update users on the terminal server
-                    $mysqli->query("UPDATE assoc_user_ts SET id_utente= '". $user_id_UTS_to_modify ."', 
-                                                                id_ts= '". $ts_id_UTS_to_modify ."', 
-                                                                cancellato= '". $deleted_UTS_to_modify ."', 
+                    $mysqli->query("UPDATE assoc_user_ts SET id_utente= '". $user_id_UTS_to_modify ."',
+                                                                id_ts= '". $ts_id_UTS_to_modify ."',
+                                                                cancellato= '". $deleted_UTS_to_modify ."',
                                                                 accessi= '". $accesses_UTS_to_modify ."'
                                                             WHERE id= $id");
                     $logTemp = Log::instance();
@@ -674,34 +669,34 @@ class Controller_Rpc extends Controller
 
         $this->response->body(json_encode($ret));
     }
-    
+
     //Special Edit user(s) in TS
     public function action_specialEditUTS()
     {
         $session = Session::instance();
         $user_id = $session->get('user_id');
         $user_name = $session->get('user_name');
-        
+
         $user_id_UTS_to_modify = $_POST['useridspecialeditUTSInsert'];
         $deleted_UTS_to_modify = $_POST['deletedspecialeditUTSInsert'];
         $log = Log::instance();
-            
+
         $ret = new stdClass();
         $ret->is_error = false;
         $ret->is_admin = false;
-        
+
 
         if (isset($user_id) && $user_id != "") {
 
             //Giving admin perms
             $ret->is_admin = true;
             //Connect to database
-            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
             //If connection failed
             if ($mysqli->connect_error) {
 
                 $ret->is_error = true;
-                
+
                 $log->add(Log::ERROR, "Connection error: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
 
                 die("Connection error: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
@@ -710,7 +705,7 @@ class Controller_Rpc extends Controller
             } else {
                 //If is admin
                 if (($ret->is_admin == true) && isset($user_id_UTS_to_modify)){
-                    
+
                     //Getting number of rows where we have the inserted ID to modify for the "for" condition
                     $results= $mysqli->query("SELECT id_utente FROM assoc_user_ts WHERE id_utente= $user_id_UTS_to_modify");
 
@@ -718,12 +713,12 @@ class Controller_Rpc extends Controller
                         //Modify users in the terminal server
                         $mysqli->query("UPDATE assoc_user_ts SET cancellato= '" . $deleted_UTS_to_modify . "'
                                                          WHERE id_utente= $user_id_UTS_to_modify");
-                        
+
                         //Logs user modifications on server
                         $log->add(Log::INFO, "User " . "$user_name" . " (" . $user_id . ") has modified user id" . $user_id_UTS_to_modify . " in the terminal server");
                     }
                 } else{
-                    
+
                 }
             }
             //Close connection
@@ -742,18 +737,18 @@ class Controller_Rpc extends Controller
         $user_id = $session->get('user_id');
         $user_name = $session->get('user_name');
         $log = Log::instance();
-        
+
         $ret = new stdClass();
         $ret->is_error = false;
         $ret->is_admin = false;
         $ret->is_selected = false;
-        
+
         if (isset($user_id) && $user_id != "") {
 
             //Giving admin perms
             $ret->is_admin = true;
             //Connect to database
-            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_TABLE_OS);
+            $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
             //If connection failed
             if ($mysqli->connect_error) {
 
@@ -765,7 +760,7 @@ class Controller_Rpc extends Controller
 
             } else {
                 $id = json_decode(stripslashes($_POST['id']), true);
-                
+
                 for($i = 0; $i < count($id); $i++){
                     //If is allowed
                     if (($ret->is_admin == true) && isset($id[$i])) {
@@ -787,12 +782,12 @@ class Controller_Rpc extends Controller
 
         $this->response->body(json_encode($ret));
     }
-    
+
     //Load full table toggle
     public function action_fullTableLoadToggle(){
         $session = Session::instance();
         $log = Log::instance();
-        
+
         //Checking if user has selected option
         if(isset($_POST['selected'])){
             //Setting variable to option
@@ -805,7 +800,7 @@ class Controller_Rpc extends Controller
             }
         }
     }
-    
+
 }
 
 // End Rpc
